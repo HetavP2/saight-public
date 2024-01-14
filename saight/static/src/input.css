@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+
+  h1 {
+    @apply text-8xl font-semibold text-center 
+  }
+
+  h2 {
+    @apply text-white text-2xl mt-8 text-center
+    }
+  
+} 
+
+@layer components {
+  .gradient-text {
+    background-color: #f3ec78;
+    background-image: linear-gradient(45deg, #5CE1E6, #9416B8);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    -webkit-text-stroke: 1px white; /* width and color */
+} 
+  .call-to-action {
+    @apply border-white border-2 font-semibold text-white hover:bg-white px-6 py-2 rounded-md hover:text-black mx-auto
+    ease-in-out duration-150
+  }
+
+  .call-to-action:hover img {
+    @apply invert ease-in-out duration-150
+  }
+
+  nav a:hover img {
+    @apply invert-0 duration-150
+  }
+}
+
+
+/*npx tailwindcss -i ./saight/static/src/input.css -o ./saight/static/dist/css/output.css --watch*/

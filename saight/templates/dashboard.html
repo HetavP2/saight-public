@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block head %}    
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+        /* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+#map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#floating-panel {
+  position: sticky;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+#bbc {
+  padding-left: 25px;
+}
+
+#bbb {
+  padding-left: 720px;
+}
+
+#floating-panel {
+  margin-left: -52px;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<body>
+     <nav class="flex items-center justify-between flex-wrap bg-staple_teal px-12 border-b-2 border-white">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <img src = "{{ url_for('static', filename='img/saight-eye.png')}}" class = "w-16"/>
+      <span class="font-semibold text-xl">s<span class="text-staple_purple">ai</span>ght</span>
+    </div>
+    <div>
+        <a href="/logout" class="inline-block text-md px-4 py-2 leading-none border-2 font-semibold rounded text-white border-white 
+        hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <div>
+    <h1 class="text-6xl text-[#9416B8] p-2">Hi {{full_name}},</h1>
+  </div>
+  <br>
+  <main class="grid grid-cols-2 gap-1 mx-auto place-items-start  px-7 m-8">
+    <div id="bbc">
+        <h2 class="text-2xl font-bold md:text-3xl m-4 text-[#d973f6]">Here are the people you have seen</h2>
+        <div class="grid grid-cols-2 col-span-1 gap-1 overflow-y-scroll" style="height: 500px">
+      
+            {% for user in users %}
+      
+      
+        <div>
+            <div
+                  class="hover:scale-95 w-80 block rounded-lg bg-white shadow-black-900 dark:bg-[#9416B8]">
+                  <div
+                    class="relative overflow-hidden bg-cover bg-no-repeat"
+                    data-te-ripple-ini
+                    data-te-ripple-color="light">
+
+                    {% if users[user]["name"] == "Bhavya Patel" %}
+                    <img
+                      class="rounded-t-lg w-full"
+                      src="{{ url_for('static', filename='img/bhavya-saight.png')}}"
+                      alt="" />
+                      
+                      {% elif users[user]["name"] == "Hetav Patel" %}
+                      <img
+                        class="rounded-t-lg w-full"
+                        src="{{ url_for('static', filename='img/hetav-saight.png')}}"
+                        alt="Image" />
+                      
+                      {% elif users[user]["name"] == "Elon Musk" %}
+                      <img
+                        class="rounded-t-lg w-full"
+                        src="{{ url_for('static', filename='img/elon.png')}}"
+                        alt="" />
+                      {% elif users[user]["name"] == "Sajan Paventhan" %}
+                      <img
+                        class="rounded-t-lg w-full"
+                        src="{{ url_for('static', filename='img/sajan-saight.png')}}"
+                        alt="" />
+                      
+                      {% endif %}
+                    <a>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></div>
+                    </a>
+                  </div>
+                  <div class="p-6">
+                    <h5
+                      class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                      {{users[user]["name"]}}
+                    </h5>
+                    <!-- {'211211': {'birth_date': '2007', 'email': 'bhavyap@gmail.com', 'last_seen': '2023-09-03 11:46:09', 'name': 'Bhavya Patel', 'phone_number': 6475398191, 'relation': 'brother', 'times_seen': 9}, ' -->
+                    <ul>
+                        <li class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            Birth Day: {{users[user]["birth_date"]}}
+                        </li>
+                        <li class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            Email: {{users[user]["email"]}}
+                        </li>
+                        <li class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            Last Seen: {{users[user]["last_seen"]}}
+                        </li>
+                        <li class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            Phone Number: {{users[user]["phone_number"]}}
+                        </li>
+                        <li class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            Relation: {{users[user]["relation"]}}
+                        </li>
+                        <li class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            Number of times seen: {{users[user]["times_seen"]}}
+                        </li>
+                    </ul>
+                    <button class="drop2 call-to-action w-fit h-12 mx-auto block mt-16">Check Last Meet</button>
+                        </div>
+                    </div>
+        </div>
+      
+      {% endfor %}
+      </div>
+    </div>
+      
+    
+    <!-- <div class="grid grid-cols-2 gap-2 place-items-center"> -->
+    <div class="flex-col flex">
+        <h2 class="text-2xl font-bold md:text-3xl m-4 text-[#d973f6]">Analytics</h2>
+      <div class="place-items-center">
+          <h3 class="text-center">Number of People Seen Summary</h3>
+          <canvas class="max-w-full rounded-lg block w-auto h-auto" id="peopleSeenChart" width="700" height="500"></canvas>
+      </div>
+    </div>
+
+    <!-- <div id="floating-panel">
+      <button id="drop">Drop Markers</button>
+    </div>
+    <div id="map"></div> -->
+    
+   <div id="bbb">
+    <div id="floating-panel" class="place-items-center">
+      <button id="drop">Drop Markers</button>
+    </div>    
+  </div>
+
+
+</main>
+
+
+<div id="map" class="flex-col flex"></div>
+  
+<footer class="flex justify-between bg-staple_teal p-4 text-black">
+  <div>
+        &copy; <span id="currentYear"></span> saight. All rights reserved.
+    </div>
+    <div class="">
+        <a href="https://devpost.com/software/604891" class="hover:text-white hover:bg-black px-3 py-2 rounded-md duration-150">devpost</a> | <a href="https://github.com/HetavP2/saight-frontend.git" class="duration-150 hover:text-white hover:bg-black px-3 py-2 rounded-md">github</a>
+    </div>
+    </footer>
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+    
+<script>
+    var ctx = document.getElementById("peopleSeenChart").getContext("2d");
+    var peopleSeenChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: {{labels | safe}},
+            datasets: [
+                {
+                    label: "Number of times seen",
+                    data: {{values | safe}},
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    lineTension: 0.1,
+                    backgroundColor: "rgb(75, 192, 192)",
+                }
+            ] 
+        },
+        options: {
+            responsive: false,
+        },
+    });
+
+</script>
+
+
+    <script>
+        const nearLocation = { lat: 43.23966197903271, lng: -79.97055321900588 };
+        const fixedLocations = [
+            {lat: 43.26901513140958, lng: -79.84743189696535},
+            {lat: 43.26209529698577, lng: -79.85468375897031},
+            {lat: 43.23274737263242, lng: -79.85796780012619},
+            {lat: 43.241065592840044,  lng: -79.88690304264875},
+            {lat: 43.22915109515872,   lng: -79.95039291559758},
+        ]
+const randomLocationsNearby = Array.from({ length: 60 }, () => {
+  const latOffset = Math.random() * 0.04; // Adjust as needed
+  const lngOffset = Math.random() * 0.04; // Adjust as needed
+
+  const lat = nearLocation.lat + latOffset;
+  const lng = nearLocation.lng - lngOffset;
+
+  return { lat, lng };
+});
+
+
+
+const neighborhoods = randomLocationsNearby.concat(fixedLocations);
+
+// for 2nd
+const neighborhoods_one = [{lat: 43.22915109515872,   lng: -79.95039291559758}]
+
+let markers = [];
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: { lat: 43.26555393460055, lng: -79.91822995239946 },
+  });
+  document.getElementById("drop").addEventListener("click", drop);
+  const buttons = document.querySelectorAll(".drop2");
+  
+  // loop through each button and add a click event listener
+  buttons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    // do something when the button is clicked
+    drop_one()
+  });
+  });
+}
+
+
+function drop() {
+  clearMarkers();
+
+  for (let i = 0; i < neighborhoods.length; i++) {
+    addMarkerWithTimeout(neighborhoods[i], i * 200);
+  }
+
+}
+
+// 2nd 
+function drop_one() {
+  clearMarkers();
+  
+  for (let i = 0; i < neighborhoods_one.length; i++) {
+    addMarkerWithTimeout(neighborhoods_one[i], i * 200);
+  }
+  // window.initMap = initMap_one;
+}
+
+function addMarkerWithTimeout(position, timeout) {
+  window.setTimeout(() => {
+    markers.push(
+      new google.maps.Marker({
+        position: position,
+        map,
+        animation: google.maps.Animation.DROP,
+      }),
+    );
+  }, timeout);
+}
+
+function clearMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+
+  markers = [];
+}
+
+window.initMap = initMap;
+
+</script>
+
+</body>
+
+
+{% endblock %}

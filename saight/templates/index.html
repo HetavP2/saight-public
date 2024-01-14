@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block content %}
+<body>
+    <nav class="flex items-center justify-between flex-wrap bg-staple_teal px-12 border-b-2 border-white">
+    <a class="flex items-center flex-shrink-0 text-black mr-6" href="/">
+      <img src = "{{ url_for('static', filename='img/saight-eye.png')}}" class = "w-16"/>
+      <span class="font-semibold text-xl">s<span class="text-staple_purple">ai</span>ght</span>
+    </a>
+    <div>
+        <a href="/login" class="inline-block text-md px-4 py-2 leading-none border-2 font-semibold rounded text-black border-black 
+        hover:border-transparent hover:text-white hover:bg-black mt-4 lg:mt-0 ease-in-out duration-150">
+        <img src="{{ url_for('static', filename='img/white-google-logo.png')}}" class=" self-center h-5 inline-block invert"/>
+        Login with Google</a>
+      </div>
+    </div>
+  </nav>
+    <header class="border-staple_purple py-40 px-20 h-screen bg-gradient-to-tr from-staple_teal to-staple_purple relative rounded-b-3xl">        
+        <h1 class ="mx-auto block text-white">s<span class="gradient-text">ai</span>ght</h1>
+        <h2>Sight through Sound</h2>
+
+        <a class="call-to-action w-fit h-12 mx-auto block mt-16" href="/login">
+            <img src="{{ url_for('static', filename='img/white-google-logo.png')}}" class=" self-center h-5 inline-block hover:invert"/>
+            Login with Google
+        </a>
+    </header>
+    <section>
+        <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="bg-staple_purple p-8 md:p-12 lg:px-16 lg:py-24 rounded-lg">
+                <div class="mx-auto max-w-xl text-center">
+                <h2 class="text-2xl font-bold text-white md:text-3xl">
+                    Help the visually impaired navigate the complex world using sound.
+                </h2>
+        
+                <p class="hidden text-white/90 sm:mt-4 sm:block">
+                    Saight is a software accompanied by a smartphone mount, which can be attached to any white cane. Paired with our advanced artificial intelligence technology, users can access an assistant to help them identify their surroundings, recognize familiar faces and answer pressing questions. 
+                </p>
+        
+
+                </div>
+            </div>
+        
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2 rounded-lg">
+                <div class="w-full h-full relative ">
+                    <img
+                alt="Person"
+                src="{{ url_for('static', filename='img/alexBlind.jpg')}}"
+                class="h-40 w-full object-cover sm:h-56 md:h-full shadow-2xl"
+                />
+                <div class="h-full w-full bg-black opacity-35 absolute top-0 bottom-0"></div>
+            </div>
+                
+            <div class="w-full h-full relative">
+                <img
+                alt="Student"
+                src="{{ url_for('static', filename='img/whiteStick.jpg')}}"
+                    class="h-40 w-full object-cover sm:h-56 md:h-full rounded-lg shadow-2xl"
+                    />
+                <div class="h-full w-full bg-black opacity-35 absolute top-0 bottom-0"></div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+    </section>
+    <section class="grid grid-cols-3 gap-1 mx-5">
+        <div>
+            <img >
+        </div>
+    </section>
+
+    <div class="flex justify-center space-x-8">
+        <!-- Panel 1 -->
+        <div class="flex-1 max-w-md bg-green-200 p-6 rounded-lg shadow-md">
+          <img src="{{ url_for('static', filename='img/un_sdg_3.png')}}" alt="Panel 1" class="w-full h-fit object-cover mb-4 rounded-t-lg">
+          <p class="text-center text-xl font-bold text-green-500">Good Health and Well-Being</p>
+          <p class="text-gray-800">Improve the quality of life through social inclusion.</p>
+        </div>
+    
+        <!-- Panel 2 -->
+        <div class="flex-1 max-w-md bg-orange-200 p-6 rounded-lg shadow-md">
+          <img src="{{ url_for('static', filename='img/un_sdg_9.png')}}" alt="Panel 2" class="w-full h-fit object-cover mb-4 rounded-t-lg">
+          <p class="text-center text-xl font-bold text-orange-500">Industry, Innovation and Infrastructure</p>
+          <p class="text-gray-800">Upgrade the technological capabilities of industrial sectors, and encouraging innovation.</p>
+        </div>
+    
+        <!-- Panel 3 -->
+        <div class="flex-1 max-w-md bg-pink-200 p-6 rounded-lg shadow-md">
+          <img src="{{ url_for('static', filename='img/un_sdg_10.png')}}" alt="Panel 3" class="w-full h-fit object-cover mb-4 rounded-t-lg">
+          <p class="text-center text-xl font-bold text-pink-500">Reduced Inequalities</p>
+          <p class="text-gray-800">Empower and promote social, economic and political inclusion irrespective of disability.</p>
+        </div>
+      </div>
+</body>
+
+<br><br>
+
+<footer class="flex justify-between bg-staple_teal p-4 text-black">
+    <div>
+        &copy; <span id="currentYear"></span> saight. All rights reserved.
+    </div>
+    <div class="">
+        <a href="https://devpost.com/software/604891" class="hover:text-white hover:bg-black px-3 py-2 rounded-md duration-150">devpost</a> | <a href="https://github.com/HetavP2/saight-frontend.git" class="duration-150 hover:text-white hover:bg-black px-3 py-2 rounded-md">github</a>
+    </div>
+</footer>
+<script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
+
+{% endblock %}
